@@ -1,14 +1,21 @@
 import React from 'react'
 import NavBar from './partials/NavBar'
-import Header from './partials/Header'
+import HeaderMain from './partials/HeaderMain'
+import LearnMore from './partials/LearnMore'
 
 const Home = () => {
   return (
     <>
+    <div className='w-full h-max overflow-auto'>
     <NavBar/>
-    <Header />
+    <HeaderMain/>
+    <LearnMore/>
+    
+    </div>
+   
     </>
   )
 }
 
 export default Home
+
