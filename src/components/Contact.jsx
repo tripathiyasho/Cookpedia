@@ -4,7 +4,7 @@ import Contactform from "./partials/Contactform";
 import Footer from "./partials/Footer";
 import Subscribe from "./partials/Subscribe";
 import HorzintalCard from "./partials/HorzintalCard";
-import Loading from "./partials/Loading"
+import Loading from "./partials/Loading";
 import axios from "./utils/axios";
 import { useState, useEffect } from "react";
 
@@ -42,7 +42,9 @@ const Contact = () => {
         <Footer />
       </div>
     </>
-  ) : <Loading />
+  ) : (
+    <Loading />
+  );
 };
 
 export default Contact;

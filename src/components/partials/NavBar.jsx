@@ -23,22 +23,37 @@ const NavBar = () => {
           {/* middle part */}
           <div className="hidden md:flex w-[60%] justify-center  ">
             <ul>
-              <Link to="/" className="mx-4">Home</Link>
+              <Link to="/" className="mx-4">
+                Home
+              </Link>
               <Link className="mx-4">Recipe</Link>
-              <Link className="mx-4">Blog</Link>
-              <Link  to="/contact" className="mx-4">Contact</Link>
+              <Link to="/blog" className="mx-4">
+                Blog
+              </Link>
+              <Link to="/contact" className="mx-4">
+                Contact
+              </Link>
               <Link className="mx-4">About us</Link>
             </ul>
           </div>
           {/* side part */}
           <div className="hidden md:flex w-[20%] justify-center gap-3">
-            <a className="mx-2 text-gray-600 hover:text-gray-900 transition-colors" href="">
+            <a
+              className="mx-2 text-gray-600 hover:text-gray-900 transition-colors"
+              href=""
+            >
               <i className="ri-facebook-fill"></i>
             </a>
-            <a className="mx-2 text-gray-600 hover:text-gray-900 transition-colors" href="">
+            <a
+              className="mx-2 text-gray-600 hover:text-gray-900 transition-colors"
+              href=""
+            >
               <i className="ri-twitter-x-fill"></i>
             </a>
-            <a className="mx-2 text-gray-600 hover:text-gray-900 transition-colors" href="">
+            <a
+              className="mx-2 text-gray-600 hover:text-gray-900 transition-colors"
+              href=""
+            >
               <i className="ri-instagram-fill"></i>
             </a>
           </div>
@@ -54,19 +69,25 @@ const NavBar = () => {
           </div>
         </div>
         {navopen && (
-          <div className="w-full h-[40vh]  border md:hidden flex flex-col justify-center items-center absolute  z-20 bg-white  ">
+          <div className="w-full h-auto py-8  border md:hidden flex flex-col justify-center items-center absolute  z-20 bg-white  ">
             <ul className="flex flex-col justify-center items-center gap-10 ">
-              <Link to="/" className="mx-4">Home</Link>
+              <Link to="/" className="mx-4">
+                Home
+              </Link>
               <Link className="mx-4">Recipe</Link>
-              <Link className="mx-4">Blog</Link>
-              <Link to="/contact" className="mx-4">Contact</Link>
+              <Link to="/blog" className="mx-4">
+                Blog
+              </Link>
+              <Link to="/contact" className="mx-4">
+                Contact
+              </Link>
               <Link className="mx-4">About us</Link>
             </ul>
           </div>
         )}
       </nav>
 
-      <hr className="border" />
+      <hr className="border-t border-gray-300 w-full " />
     </>
   );
 };

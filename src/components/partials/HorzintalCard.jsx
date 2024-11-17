@@ -1,7 +1,6 @@
 import React from "react";
 
-const HorzintalCard = ({ data ,title }) => {
-
+const HorzintalCard = ({ data, title }) => {
   return (
     <div className=" w-full h-max  flex justify-center items-center flex-col   mt-14 lg:mt-20  ">
       <div className="w-[80%] flex justify-center items-center flex-col text-center md:w-[60%] mb-10 md:mb-16">

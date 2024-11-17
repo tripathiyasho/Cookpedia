@@ -12,7 +12,7 @@ const Loading = () => {
         Loading, please wait...
       </p>
     </div>
-    );
+  );
 };
 
 export default Loading;

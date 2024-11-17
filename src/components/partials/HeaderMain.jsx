@@ -1,54 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "../utils/axios";
 
-const HeaderMain = () => {
-  const [recipedetails, setRecipedetails] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0); // Track the currently displayed recipe
-
-  // Fetch Recipe Data
-  const recipedata = async () => {
-    try {
-      const { data } = await axios.get("/recipes/list", {
-        params: {
-          from: "0",
-          size: "9",
-        },
-      });
-      setRecipedetails(data.results);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    recipedata();
-  }, []);
-
-  // Navigate to the previous recipe
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? recipedetails.length - 1 : prevIndex - 1
-    );
-  };
-
-  // Navigate to the next recipe
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === recipedetails.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const generateRandomDate = () => {
-    const start = new Date(2020, 0, 1); // Starting date
-    const end = new Date(); // Current date
-    const randomDate = new Date(
-      start.getTime() + Math.random() * (end.getTime() - start.getTime())
-    );
-    return randomDate.toLocaleDateString("en-GB"); // Format: DD/MM/YYYY
-  };
-
-  const currentRecipe = recipedetails[currentIndex];
-
+const HeaderMain = ({ data, handleNext, handlePrev, generateRandomDate }) => {
   return (
     <header className="w-full h-[38vh] flex justify-center items-center md:h-[55vh] lg:h-[66vh] overflow-hidden relative my-6 lg:mt-8">
       {/* Left Navigation Button */}
@@ -60,7 +12,7 @@ const HeaderMain = () => {
       </button>
 
       {/* Recipe Content */}
-      {currentRecipe && (
+      {data && (
         <div className="w-[73%] h-[95%] flex md:w-[85%] ">
           {/* Instructions Section */}
           <div className="hidden md:flex flex-col justify-between bg-[#E7FAFE] h-full w-[50%] rounded-l-3xl p-8">
@@ -71,26 +23,22 @@ const HeaderMain = () => {
             </div>
 
             {/* Recipe Name */}
-            <h1 className="text-2xl font-bold lg:text-3xl">
-              {currentRecipe.name}
-            </h1>
+            <h1 className="text-2xl font-bold lg:text-3xl">{data.name}</h1>
 
             {/* Recipe Description */}
             <p className="text-xs lg:text-base text-gray-600">
-              {currentRecipe.description || "No description available."}
+              {data.description || "No description available."}
             </p>
 
             {/* Recipe Details */}
             <div className="flex gap-5">
               <span className="text-xs lg:text-sm bg-zinc-300 rounded-xl p-1 flex items-center gap-1">
                 <i className="ri-timer-line"></i>{" "}
-                {currentRecipe.total_time_minutes > 0
-                  ? currentRecipe.total_time_minutes
-                  : 30}{" "}
+                {data.total_time_minutes > 0 ? data.total_time_minutes : 30}{" "}
                 minutes
               </span>
               <span className="text-xs lg:text-sm bg-zinc-300 rounded-xl p-1">
-                {currentRecipe.yields || "Serves 1"}
+                {data.yields || "Serves 1"}
               </span>
             </div>
 
@@ -105,9 +53,7 @@ const HeaderMain = () => {
                 />
                 <div>
                   <h6 className="text-xs lg:text-sm font-bold">
-                    {currentRecipe.credits[0].name
-                      ? currentRecipe.credits[0].name
-                      : "Anonymous"}
+                    {data.credits[0].name ? data.credits[0].name : "Anonymous"}
                   </h6>
                   <span className="text-xs lg:text-sm text-gray-500">
                     {generateRandomDate()}
@@ -126,7 +72,7 @@ const HeaderMain = () => {
           <div className="w-full h-full md:w-[50%]">
             <img
               className="rounded-3xl w-full h-full object-cover md:rounded-l-none"
-              src={currentRecipe.thumbnail_url}
+              src={data.thumbnail_url}
               alt="Recipe Dish"
             />
           </div>

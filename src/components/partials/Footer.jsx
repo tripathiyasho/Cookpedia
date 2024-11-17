@@ -18,13 +18,14 @@ const Footer = () => {
             <Link to="/" className="hover:text-gray-900 transition-colors">
               Home
             </Link>
-            <Link  className="hover:text-gray-900 transition-colors">
+            <Link className="hover:text-gray-900 transition-colors">
               Recipe
             </Link>
-            <Link  className="hover:text-gray-900 transition-colors">
-              Blog
-            </Link>
-            <Link to="/contact"  className="hover:text-gray-900 transition-colors">
+            <Link className="hover:text-gray-900 transition-colors">Blog</Link>
+            <Link
+              to="/contact"
+              className="hover:text-gray-900 transition-colors"
+            >
               Contact
             </Link>
             <Link className="hover:text-gray-900 transition-colors">
