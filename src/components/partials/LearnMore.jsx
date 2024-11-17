@@ -2,7 +2,7 @@ import React from "react";
 
 const LearnMore = () => {
   return (
-    <header className="w-full h-auto flex justify-center items-center">
+    <header className="w-full h-auto flex justify-center items-center mt-14 lg:mt-20">
       {/* Content Wrapper */}
       <div className="w-[90%] max-w-7xl flex flex-col lg:flex-row gap-6">
         {/* Instructions Section */}
@@ -28,7 +28,7 @@ const LearnMore = () => {
         </div>
 
         {/* Product Image Section */}
-        <div className="w-full lg:w-1/2 relative">
+        <div className="w-full lg:w-1/2 relative ">
           <div className="h-[66vh] w-full bg-gradient-to-b from-transparent to-[#E7F9FD] rounded-3xl overflow-hidden relative flex items-center justify-center">
             <img
               className="absolute bottom-0 w-full h-full object-contain"

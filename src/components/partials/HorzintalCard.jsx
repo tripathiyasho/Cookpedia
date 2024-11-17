@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-const Card = ({ data }) => {
+const HorzintalCard = ({ data }) => {
   return (
     <div className="flex flex-wrap justify-center  gap-6 p-4">
       {data.map((d, i) => (
-        <Link
+        <div
           key={i}
-          className="w-[90%] sm:w-[48%] lg:w-[25%] bg-gradient-to-b from-transparent to-[#E7F9FD] rounded-2xl shadow-lg overflow-hidden flex flex-col"
+          className="w-[90%] sm:w-[48%]  lg:w-[20%] rounded-2xl shadow-md  overflow-hidden flex flex-col"
         >
           {/* Image */}
           <img
@@ -20,7 +19,7 @@ const Card = ({ data }) => {
             <h1 className="text-lg font-semibold text-gray-800 lg:text-xl">
               {d.name}
             </h1>
-            <div className="flex items-center justify-start gap-4 mt-2 text-sm text-gray-600">
+            <div className="flex items-center justify-start gap-4 mt-2 text-xs text-gray-600">
               <span className="flex items-center gap-1">
                 <i className="ri-timer-line"></i>{" "}
                 {d.total_tine_minutes > 0 ? d.total_tine_minutes : 30} minutes
@@ -30,10 +29,10 @@ const Card = ({ data }) => {
               </span>
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
 };
 
-export default Card;
+export default HorzintalCard;

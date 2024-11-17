@@ -10,8 +10,8 @@ const NavBar = () => {
   };
   return (
     <>
-      <nav className="w-full h-[14vh]">
-        <div className="w-full h-full px-10 flex justify-between  items-center ">
+      <nav className="w-full h-[14vh]  ">
+        <div className="w-full h-full px-10 flex justify-between   items-center ">
           {/* logo */}
           <div className="w-[40%] md:w-[20%] h-[100%] flex justify-center items-center ">
             <img
@@ -32,13 +32,13 @@ const NavBar = () => {
           </div>
           {/* side part */}
           <div className="hidden md:flex w-[20%] justify-center gap-3">
-            <a className="mx-2" href="">
+            <a className="mx-2 text-gray-600 hover:text-gray-900 transition-colors" href="">
               <i className="ri-facebook-fill"></i>
             </a>
-            <a className="mx-2" href="">
+            <a className="mx-2 text-gray-600 hover:text-gray-900 transition-colors" href="">
               <i className="ri-twitter-x-fill"></i>
             </a>
-            <a className="mx-2" href="">
+            <a className="mx-2 text-gray-600 hover:text-gray-900 transition-colors" href="">
               <i className="ri-instagram-fill"></i>
             </a>
           </div>
@@ -54,7 +54,7 @@ const NavBar = () => {
           </div>
         </div>
         {navopen && (
-          <div className="w-full h-[40vh] border md:hidden flex flex-col justify-center items-center ">
+          <div className="w-full h-[40vh]  border md:hidden flex flex-col justify-center items-center absolute  z-20 bg-white  ">
             <ul className="flex flex-col justify-center items-center gap-10 ">
               <Link className="mx-4">Home</Link>
               <Link className="mx-4">Recipe</Link>

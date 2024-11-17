@@ -41,14 +41,16 @@ const HeaderMain = () => {
   const generateRandomDate = () => {
     const start = new Date(2020, 0, 1); // Starting date
     const end = new Date(); // Current date
-    const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+    const randomDate = new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime())
+    );
     return randomDate.toLocaleDateString("en-GB"); // Format: DD/MM/YYYY
   };
 
   const currentRecipe = recipedetails[currentIndex];
 
   return (
-    <header className="w-full h-[38vh] flex justify-center items-center md:h-[55vh] lg:h-[66vh] overflow-hidden relative">
+    <header className="w-full h-[38vh] flex justify-center items-center md:h-[55vh] lg:h-[66vh] overflow-hidden relative mt-6 lg:mt-8">
       {/* Left Navigation Button */}
       <button
         onClick={handlePrev}
@@ -59,16 +61,12 @@ const HeaderMain = () => {
 
       {/* Recipe Content */}
       {currentRecipe && (
-        <div className="w-[85%] h-[95%] flex">
+        <div className="w-[73%] h-[95%] flex md:w-[85%] ">
           {/* Instructions Section */}
           <div className="hidden md:flex flex-col justify-between bg-[#E7FAFE] h-full w-[50%] rounded-l-3xl p-8">
             {/* Tag */}
             <div className="h-8 w-32 flex items-center justify-center bg-white rounded-xl gap-1 px-2">
-              <img
-                className="h-[2vh]"
-                src={currentRecipe.thumbnail_url}
-                alt="Tag icon"
-              />
+              <img className="h-[2vh]" src="../image.png" alt="Tag icon" />
               <h6 className="text-sm font-bold">Hot recipes</h6>
             </div>
 
@@ -107,7 +105,9 @@ const HeaderMain = () => {
                 />
                 <div>
                   <h6 className="text-xs lg:text-sm font-bold">
-                    {currentRecipe.credits[0].name ? currentRecipe.credits[0].name : "Anonymous"}
+                    {currentRecipe.credits[0].name
+                      ? currentRecipe.credits[0].name
+                      : "Anonymous"}
                   </h6>
                   <span className="text-xs lg:text-sm text-gray-500">
                     {generateRandomDate()}
