@@ -24,8 +24,9 @@ const RecipeHome = () => {
   }, []);
 
   return (
-    <div className=" w-full h-max  flex justify-center items-center flex-col mt-14 lg:mt-20 ">
-      <div className="w-[80%] mb-8  md:mb-12 flex justify-center items-center flex-col text-center md:w-[60%]  ">
+
+    <div className=" w-full h-max  flex justify-center items-center flex-col ">
+      <div className="w-[80%] mb-10 md:mb-16 flex justify-center items-center flex-col text-center md:w-[60%]  ">
         <h1 className="text-2xl lg:text-4xl font-bold leading-tight">
           Simple and tasty recipes
         </h1>
@@ -34,6 +35,7 @@ const RecipeHome = () => {
           tempor incididunt ut labore et dolore magna aliqut enim ad minim{" "}
         </p>
       </div>
+      
       <Card data={dishData} />
     </div>
   );

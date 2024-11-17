@@ -50,7 +50,7 @@ const HeaderMain = () => {
   const currentRecipe = recipedetails[currentIndex];
 
   return (
-    <header className="w-full h-[38vh] flex justify-center items-center md:h-[55vh] lg:h-[66vh] overflow-hidden relative mt-6 lg:mt-8">
+    <header className="w-full h-[38vh] flex justify-center items-center md:h-[55vh] lg:h-[66vh] overflow-hidden relative my-6 lg:mt-8">
       {/* Left Navigation Button */}
       <button
         onClick={handlePrev}

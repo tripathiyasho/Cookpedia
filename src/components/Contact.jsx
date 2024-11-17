@@ -1,16 +1,14 @@
 import React from "react";
 import NavBar from "./partials/NavBar";
-import HeaderMain from "./partials/HeaderMain";
-import LearnMore from "./partials/LearnMore";
-import Subscribe from "./partials/Subscribe";
-import RecipeHome from "./partials/RecipeHome";
+import Contactform from "./partials/Contactform";
 import Footer from "./partials/Footer";
-import InstaSection from "./partials/InstaSection";
+import Subscribe from "./partials/Subscribe";
 import HorzintalCard from "./partials/HorzintalCard";
-import { useState, useEffect } from "react";
+import Loading from "./partials/Loading"
 import axios from "./utils/axios";
-import Loading from "./partials/Loading";
-const Home = () => {
+import { useState, useEffect } from "react";
+
+const Contact = () => {
   const [dishData, setDishData] = useState([]);
 
   const fetchData = async () => {
@@ -26,28 +24,25 @@ const Home = () => {
       console.error("Error fetching data:", error);
     }
   };
-
-  
-
   useEffect(() => {
     fetchData();
   }, []);
-  return dishData.length > 0 ?  (
+  return dishData.length > 0 ? (
     <>
-      <div className="w-full h-auto overflow-auto">
+      <div className="w-full h-auto overflow-auto flex flex-col items-center mb-2">
         <NavBar />
-        <HeaderMain />
-        <RecipeHome />
-        <LearnMore />
-        <InstaSection/>
-         <HorzintalCard data={dishData}  title={"Try this delicious recipe to make your day "}
-            length={8} /> 
-       
+        {/* contact form and image  */}
+        <Contactform />
         <Subscribe />
+        <HorzintalCard
+          data={dishData}
+          title={"Check out the delicious recipe "}
+          length={4}
+        />
         <Footer />
       </div>
     </>
   ) : <Loading />
 };
 
-export default Home;
+export default Contact;

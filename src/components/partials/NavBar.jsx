@@ -23,10 +23,10 @@ const NavBar = () => {
           {/* middle part */}
           <div className="hidden md:flex w-[60%] justify-center  ">
             <ul>
-              <Link className="mx-4">Home</Link>
+              <Link to="/" className="mx-4">Home</Link>
               <Link className="mx-4">Recipe</Link>
               <Link className="mx-4">Blog</Link>
-              <Link className="mx-4">Contact</Link>
+              <Link  to="/contact" className="mx-4">Contact</Link>
               <Link className="mx-4">About us</Link>
             </ul>
           </div>
@@ -56,10 +56,10 @@ const NavBar = () => {
         {navopen && (
           <div className="w-full h-[40vh]  border md:hidden flex flex-col justify-center items-center absolute  z-20 bg-white  ">
             <ul className="flex flex-col justify-center items-center gap-10 ">
-              <Link className="mx-4">Home</Link>
+              <Link to="/" className="mx-4">Home</Link>
               <Link className="mx-4">Recipe</Link>
               <Link className="mx-4">Blog</Link>
-              <Link className="mx-4">Contact</Link>
+              <Link to="/contact" className="mx-4">Contact</Link>
               <Link className="mx-4">About us</Link>
             </ul>
           </div>

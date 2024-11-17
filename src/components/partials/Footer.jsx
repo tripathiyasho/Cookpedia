@@ -15,7 +15,7 @@ const Footer = () => {
         {/* Navigation Links */}
         <div className="mt-5 lg:mt-0 lg:w-[60%]">
           <ul className="flex flex-wrap justify-center lg:justify-end gap-4 lg:gap-6 text-sm lg:text-base text-gray-700">
-            <Link className="hover:text-gray-900 transition-colors">
+            <Link to="/" className="hover:text-gray-900 transition-colors">
               Home
             </Link>
             <Link  className="hover:text-gray-900 transition-colors">
@@ -24,7 +24,7 @@ const Footer = () => {
             <Link  className="hover:text-gray-900 transition-colors">
               Blog
             </Link>
-            <Link  className="hover:text-gray-900 transition-colors">
+            <Link to="/contact"  className="hover:text-gray-900 transition-colors">
               Contact
             </Link>
             <Link className="hover:text-gray-900 transition-colors">
