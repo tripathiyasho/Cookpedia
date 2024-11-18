@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="text-center flex items-center justify-center flex-col w-full lg:w-[40%] lg:items-start">
           <img src="../ac.png" alt="Logo" className="w-[40%] md:w-[20%] mb-4" />
           <p className="text-sm lg:text-base text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Cookpedia: Where Every Recipe Tells a Story
           </p>
         </div>
 
@@ -18,17 +18,25 @@ const Footer = () => {
             <Link to="/" className="hover:text-gray-900 transition-colors">
               Home
             </Link>
-            <Link className="hover:text-gray-900 transition-colors">
+            <Link
+              to="/recipe"
+              className="hover:text-gray-900 transition-colors"
+            >
               Recipe
             </Link>
-            <Link className="hover:text-gray-900 transition-colors">Blog</Link>
+            <Link to="/blog" className="hover:text-gray-900 transition-colors">
+              Blog
+            </Link>
             <Link
               to="/contact"
               className="hover:text-gray-900 transition-colors"
             >
               Contact
             </Link>
-            <Link className="hover:text-gray-900 transition-colors">
+            <Link
+              to="/aboutus"
+              className="hover:text-gray-900 transition-colors"
+            >
               About Us
             </Link>
           </ul>

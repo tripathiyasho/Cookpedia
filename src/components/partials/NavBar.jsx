@@ -26,14 +26,18 @@ const NavBar = () => {
               <Link to="/" className="mx-4">
                 Home
               </Link>
-              <Link className="mx-4">Recipe</Link>
+              <Link to="/recipe" className="mx-4">
+                Recipe
+              </Link>
               <Link to="/blog" className="mx-4">
                 Blog
               </Link>
               <Link to="/contact" className="mx-4">
                 Contact
               </Link>
-              <Link className="mx-4">About us</Link>
+              <Link to="/aboutus" className="mx-4">
+                About us
+              </Link>
             </ul>
           </div>
           {/* side part */}
@@ -74,14 +78,18 @@ const NavBar = () => {
               <Link to="/" className="mx-4">
                 Home
               </Link>
-              <Link className="mx-4">Recipe</Link>
+              <Link to="/recipe" className="mx-4">
+                Recipe
+              </Link>
               <Link to="/blog" className="mx-4">
                 Blog
               </Link>
               <Link to="/contact" className="mx-4">
                 Contact
               </Link>
-              <Link className="mx-4">About us</Link>
+              <Link to="/aboutus" className="mx-4">
+                About us
+              </Link>
             </ul>
           </div>
         )}
