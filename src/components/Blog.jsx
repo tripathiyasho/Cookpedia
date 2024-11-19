@@ -25,6 +25,7 @@ const Blog = () => {
 
       setDishData(data.results);
     } catch (error) {
+      alert("Error fetching data: Api Call limit Exceeded , no api content will be visible, plase contact the developer ")
       console.error("Error fetching data:", error);
     }
   };

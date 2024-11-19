@@ -28,6 +28,7 @@ const Recipes = () => {
       });
       setAllDishData(data.results);
     } catch (error) {
+      alert("Error fetching data: Api Call limit Exceeded , no api content will be visible, plase contact the developer ")
       console.error("Error fetching data:", error);
     } finally {
       setLoading(false);
@@ -43,6 +44,7 @@ const Recipes = () => {
       });
       setSideData(data.results);
     } catch (error) {
+      alert("Error fetching data: Api Call limit Exceeded , no api content will be visible, plase contact the developer ")
       console.error("Error fetching side data:", error);
     }
   };
@@ -102,7 +104,7 @@ const Recipes = () => {
                     alt={d.name}
                     className="w-full lg:w-[30%] h-40 rounded-2xl object-cover"
                   />
-                  <div className="w-[70%] mt-4 lg:mt-0 lg:ml-8 flex flex-col">
+                  <div className="w-full lg:w-[70%] mt-4 lg:mt-0 lg:ml-8 flex flex-col ">
                     <h1 className="text-xl md:text-4xl lg:text-xl font-bold">
                       {d.name}
                     </h1>
@@ -128,7 +130,7 @@ const Recipes = () => {
             {/* suggestion  */}
             <div className="hidden lg:flex lg:w-[30%] flex-col">
               <span className="text-xl font-bold">Tasty Recipes</span>
-              <div className="flex flex-col mt-4">
+              <div className="flex flex-col mt-4 ">
                 {sideData.map((da, i) => (
                   <Link
                     to={`/recipe/detail/${da.id}`}
@@ -138,7 +140,7 @@ const Recipes = () => {
                     <img
                       src={da.thumbnail_url}
                       alt={da.name}
-                      className="w-[60%] h-40 rounded-2xl object-cover "
+                      className="w-[40%] h-40 rounded-2xl object-cover "
                     />
                     <div className="w-full ml-2 flex flex-col justify-center">
                       <h1 className="text-lg font-bold">{da.name}</h1>
