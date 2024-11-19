@@ -1,25 +1,30 @@
-import React from "react";
-import Home from "./components/Home";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Contact from "./components/Contact";
-import Blog from "./components/Blog";
-import Recipes from "./components/Recipes";
-import AboutUs from "./components/AboutUs";
-import RecipeDetails from "./components/RecipeDetails";
+import Loading from "./components/partials/Loading";
+
+// Lazy load components
+const Home = React.lazy(() => import("./components/Home"));
+const Recipes = React.lazy(() => import("./components/Recipes"));
+const RecipeDetails = React.lazy(() => import("./components/RecipeDetails"));
+const Blog = React.lazy(() => import("./components/Blog"));
+const Contact = React.lazy(() => import("./components/Contact"));
+const AboutUs = React.lazy(() => import("./components/AboutUs"));
 
 const App = () => {
   return (
     <>
       <div>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/recipe" element={<Recipes />} />
-          <Route path="/recipe/detail/:id" element={ <RecipeDetails/>} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/aboutus" element={<AboutUs />} />
-        </Routes>
-       {/* <RecipeDetails/> */}
+        {/* Fallback UI while lazy-loaded components are being loaded */}
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/recipe" element={<Recipes />} />
+            <Route path="/recipe/detail/:id" element={<RecipeDetails />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/aboutus" element={<AboutUs />} />
+          </Routes>
+        </Suspense>
       </div>
     </>
   );

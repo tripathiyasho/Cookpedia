@@ -11,6 +11,8 @@ import Loading from "./partials/Loading";
 import axios from "./utils/axios";
 
 const Home = () => {
+  document.title = "Cookpedia | Home";
+
   const [dishData, setDishData] = useState(null);
   const [recipeData, setRecipeData] = useState(null);
   const [recipedetails, setRecipeDetails] = useState(null);
@@ -21,18 +23,21 @@ const Home = () => {
   const fetchAllData = async () => {
     try {
       setLoading(true);
+      const randomOffset1 = Math.floor(Math.random() * 150);
+      const randomOffset2 = Math.floor(Math.random() * 200);
+      const randomOffset3 = Math.floor(Math.random() * 50);
 
       // Fetch horizontal card data (4 recipes)
       const dishResponse = axios.get("/recipes/list", {
-        params: { from: "10", size: "4" },
+        params: { from: randomOffset1.toString(), size: "4" },
       });
       // Fetch main recipe data (9 recipes)
       const recipeResponse = axios.get("/recipes/list", {
-        params: { from: "20", size: "9" },
+        params: { from: randomOffset2.toString(), size: "9" },
       });
       // Fetch header recipe data (10 recipes for carousel)
       const headerResponse = axios.get("/recipes/list", {
-        params: { from: "100" },
+        params: { from: randomOffset3.toString() },
       });
 
       const [dishData, recipeData, headerData] = await Promise.all([

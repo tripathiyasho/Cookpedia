@@ -1,7 +1,4 @@
-import React, { useState, useEffect } from "react";
-import NavBar from "./partials/NavBar";
-import Subscribe from "./partials/Subscribe";
-import Footer from "./partials/Footer";
+import React, { useState, useEffect, Suspense } from "react";
 import axios from "./utils/axios";
 import Loading from "./partials/Loading";
 import HorzintalCard from "./partials/HorzintalCard";
@@ -9,48 +6,56 @@ import VideoPlayer from "./partials/VideoPlayer";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+// Lazy load components
+const NavBar = React.lazy(() => import("./partials/NavBar"));
+const Subscribe = React.lazy(() => import("./partials/Subscribe"));
+const Footer = React.lazy(() => import("./partials/Footer"));
+
 const RecipeDetails = () => {
-  const [dishData, setDishData] = useState([1]);
+  document.title = "Cookpedia | RecipeDetail";
+
+  const [dishData, setDishData] = useState([]);
   const [recpdata, setrecpdata] = useState(null);
-  const [sideData, setSideData] = useState([]); // Side suggestions
+  const [sideData, setSideData] = useState([]);
+  const [loading, setLoading] = useState(true); // Track loading state
 
   const { id } = useParams();
 
   const getSideData = async () => {
     try {
+      const randomOffset = Math.floor(Math.random() * 500);
       const { data } = await axios.get("/recipes/list", {
-        params: { from: 120, size: 3 },
+        params: { from: randomOffset.toString(), size: 3 },
       });
-      setSideData(data.results || []);
+      setSideData(data.results);
     } catch (error) {
       console.error("Error fetching side data:", error);
     }
   };
 
   const getData = async () => {
+    setLoading(true); // Set loading to true while fetching
     try {
-      const { data } = await axios.get(
-        `recipes/get-more-info?id=${id || 2088}`
-      );
-      // console.log("API Response:", data);
-      setrecpdata(data); // Save the API response
+      const { data } = await axios.get(`recipes/get-more-info?id=${id}`);
+      setrecpdata(data);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // End loading state
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, [id]);
-
   const fetchData = async () => {
     try {
+      const randomOffset = Math.floor(Math.random() * 500); 
+
       const { data } = await axios.get("/recipes/list", {
         params: {
-          from: "10",
+          from: randomOffset.toString(),
           size: "4",
         },
       });
+
       setDishData(data.results);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -58,12 +63,18 @@ const RecipeDetails = () => {
   };
 
   useEffect(() => {
+    setrecpdata(null); 
     fetchData();
+    getData();
     getSideData();
-  }, []);
+  }, [id]);
 
-  return sideData && recpdata && dishData.length > 0 ? (
-    <>
+  if (loading || !recpdata || dishData.length === 0) {
+    return <Loading />;
+  }
+
+  return (
+    <Suspense fallback={<Loading />}>
       <div className="w-full h-auto overflow-auto flex flex-col items-center mb-2">
         <NavBar />
         {/* top part */}
@@ -107,7 +118,7 @@ const RecipeDetails = () => {
                   <div>
                     <h6 className="text-xs lg:text-sm font-bold">Servings</h6>
                     <span className="text-xs lg:text-sm text-gray-500">
-                      {recpdata.num_servings || "N/A"}
+                      {recpdata.num_servings } individual
                     </span>
                   </div>
                 </div>
@@ -120,9 +131,16 @@ const RecipeDetails = () => {
           </div>
           {/* Video and Nutrition */}
           <div className="w-full flex flex-col lg:flex-row gap-5 mt-6">
-            <div className="w-full lg:w-[70%]">
-              {/* <img src="../lady.png" alt="Dish" className="w-full rounded-lg" /> */}
-              <VideoPlayer data={recpdata.video_url} />
+            <div className="w-full lg:w-[70%] h-[60vh]">
+              {recpdata.original_video_url ? (
+                <VideoPlayer data={recpdata.original_video_url} />
+              ) : (
+                <img
+                  src="../navailable.jpg"
+                  alt="Dish"
+                  className="w-full rounded-lg object-cover h-full"
+                />
+              )}
             </div>
             {recpdata.nutrition && (
               <div className="bg-[#E7FAFE] p-5 w-full lg:w-[30%] rounded-2xl">
@@ -171,27 +189,27 @@ const RecipeDetails = () => {
                       {recpdata.nutrition.sugar} g
                     </span>
                   </li>
+                  <hr className="border-t border-gray-200 w-full" />
                 </ul>
                 <p className="mt-5 text-sm text-gray-600">
-                  Adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                  dolore magna aliqua.
+                  Knowing about nutrition is crucial for maintaining health,
+                  preventing diseases, and making informed food choices.
                 </p>
               </div>
             )}
           </div>
           {/* Description */}
           <p className="text-sm md:text-base text-gray-600 mt-10 leading-relaxed">
-            {recpdata.description}
+            {recpdata.description ||
+              "This dish brings loved ones together, blending flavors and cherished memories..."}
           </p>
         </div>
 
-        {/* Ingredients and Directions  */}
-        <div className="flex flex-wrap w-[90%] mt-10">
-          {/* Main Content */}
+        {/* Ingredients and Directions */}
+        <div className="flex flex-wrap w-[90%] mt-8">
           <div className="w-full lg:w-[75%] flex flex-col mb-10">
             {/* Ingredients Section */}
-
-            <div className="w-full flex flex-col mb-10 p-5 ">
+            <div className="w-full flex flex-col mb-10 p-5">
               <span className="text-2xl lg:text-3xl font-bold mb-4">
                 Ingredients:
               </span>
@@ -205,12 +223,12 @@ const RecipeDetails = () => {
                 ) : (
                   <p>No Ingredients available</p>
                 )}
+                <hr className="border-t mt-5 border-gray-200 w-full" />
               </ul>
             </div>
 
             {/* Directions Section */}
-
-            <div className="w-full flex flex-col mb-10 p-5">
+            <div className="w-full flex flex-col mb-2 p-5">
               <span className="text-2xl lg:text-3xl font-bold mb-4">
                 Directions:
               </span>
@@ -224,54 +242,60 @@ const RecipeDetails = () => {
                 ) : (
                   <li>No directions available</li>
                 )}
+                <hr className="border-t mt-5 border-gray-200 w-full" />
               </ol>
             </div>
           </div>
 
           {/* Suggestions Section */}
-          <div className="hidden lg:flex w-full lg:w-[25%]  flex-col mt-10 lg:mt-0  p-5 ">
+          <div className="hidden lg:flex w-full lg:w-[25%] flex-col mt-10 lg:mt-0 p-5">
             <span className="text-xl lg:text-2xl font-bold mb-4">
               Other Recipes:
             </span>
             <div className="flex flex-col gap-4">
-              {/* Example Recipe */}
               {sideData.map((da, i) => (
                 <Link
                   to={`/recipe/detail/${da.id}`}
                   key={i}
-                  className="w-full flex  p-3 rounded-lg "
+                  className="w-full flex p-3 rounded-lg "
                 >
                   <img
                     src={da.thumbnail_url}
                     alt={da.name}
                     className="w-[60%] h-40 rounded-2xl object-cover"
+                    loading="lazy" // Lazy loading for images
                   />
                   <div className="w-full ml-2 flex flex-col justify-center">
-                    <h1 className="text-lg font-bold">{da.name}</h1>
+                    <h1 className="text-md font-bold">{da.name}</h1>
                     <p className="text-sm text-gray-600 mt-2">
                       {da.credits[0]?.name || "Anonymous"}
                     </p>
                   </div>
                 </Link>
               ))}
-              {/* Add more recipes as needed */}
             </div>
-            <img src="../ad.png" alt="" className="mt-10" />
+            <img
+              src="../ad.png"
+              alt="Advertisement"
+              className="mt-10"
+              loading="lazy" // Lazy loading for images
+            />
           </div>
         </div>
 
         <Subscribe />
         <HorzintalCard
           data={dishData}
-          title={"You may like these recipe too"}
+          title={"You may like these recipes too"}
           length={4}
         />
         <Footer />
       </div>
-    </>
-  ) : (
-    <Loading />
+    </Suspense>
   );
 };
 
 export default RecipeDetails;
+
+
+

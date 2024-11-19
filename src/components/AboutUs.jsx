@@ -3,6 +3,8 @@ import Footer from "./partials/Footer";
 import React from "react";
 
 const AboutUs = () => {
+  document.title = "Cookpedia | AboutUs";
+
   return (
     <>
       <div className="w-full h-auto flex flex-col items-center">

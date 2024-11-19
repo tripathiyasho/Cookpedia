@@ -6,17 +6,23 @@ import axios from "./utils/axios";
 import Footer from "./partials/Footer";
 import Loading from "./partials/Loading";
 
-const Guide = () => {
+const Blog = () => {
+  document.title = "Cookpedia | Blog";
+
   const [dishData, setDishData] = useState([]);
 
   const fetchData = async () => {
     try {
+      // Generate a random offset for 'from' parameter
+      const randomOffset = Math.floor(Math.random() * 150); // Adjust max value based on API range
+
       const { data } = await axios.get("/recipes/list", {
         params: {
-          from: "10",
-          size: "4",
+          from: randomOffset.toString(), // Ensure the value is within the API's valid range
+          size: "4", // Number of recipes to fetch
         },
       });
+
       setDishData(data.results);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -170,4 +176,4 @@ const Guide = () => {
   );
 };
 
-export default Guide;
+export default Blog;

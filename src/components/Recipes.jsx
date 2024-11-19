@@ -7,23 +7,26 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Recipes = () => {
+  document.title = "Cookpedia | Recipe";
+
   const [allDishData, setAllDishData] = useState([]); // All fetched recipes
   const [sideData, setSideData] = useState([]); // Side suggestions
   const [currentPage, setCurrentPage] = useState(1); // Current page for pagination
   const [loading, setLoading] = useState(false); // Loading state
   const itemsPerPage = 6; // Number of items per page
   const totalPages = Math.ceil(allDishData.length / itemsPerPage); // Calculate total pages dynamically
-
   // Fetch all recipes (fetch enough data for pagination)
   const fetchData = async () => {
     setLoading(true);
     try {
+      const randomOffset = Math.floor(Math.random() * 250);
       const { data } = await axios.get("/recipes/list", {
-        params: {from: 40, 
+        params: {
+          from: randomOffset.toString(),
           size: 60, // Fetch a larger dataset (adjust based on your needs)
         },
       });
-      setAllDishData(data.results || []);
+      setAllDishData(data.results);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -34,10 +37,11 @@ const Recipes = () => {
   // Fetch side recipes
   const getSideData = async () => {
     try {
+      const randomOffset = Math.floor(Math.random() * 60);
       const { data } = await axios.get("/recipes/list", {
-        params: { from: 120, size: 3 },
+        params: { from: randomOffset.toString(), size: 3 },
       });
-      setSideData(data.results || []);
+      setSideData(data.results);
     } catch (error) {
       console.error("Error fetching side data:", error);
     }
@@ -88,7 +92,8 @@ const Recipes = () => {
             {/* card  */}
             <div className="w-full lg:w-[70%] flex flex-col items-center mb-10">
               {paginatedData.map((d, i) => (
-                <Link to = {`/recipe/detail/${d.id}`}
+                <Link
+                  to={`/recipe/detail/${d.id}`}
                   key={i}
                   className="w-full overflow-hidden flex flex-wrap lg:flex-nowrap  p-4 rounded-lg "
                 >
@@ -125,11 +130,15 @@ const Recipes = () => {
               <span className="text-xl font-bold">Tasty Recipes</span>
               <div className="flex flex-col mt-4">
                 {sideData.map((da, i) => (
-                  <Link to = {`/recipe/detail/${da.id}`} key={i} className="w-full flex  p-3 rounded-lg ">
+                  <Link
+                    to={`/recipe/detail/${da.id}`}
+                    key={i}
+                    className="w-full flex  p-3 rounded-lg "
+                  >
                     <img
                       src={da.thumbnail_url}
                       alt={da.name}
-                      className="w-[60%] h-40 rounded-2xl object-cover"
+                      className="w-[60%] h-40 rounded-2xl object-cover "
                     />
                     <div className="w-full ml-2 flex flex-col justify-center">
                       <h1 className="text-lg font-bold">{da.name}</h1>
@@ -140,7 +149,7 @@ const Recipes = () => {
                   </Link>
                 ))}
               </div>
-              <img src="../ad.png" alt=""  className="mt-10"/>
+              <img src="../ad.png" alt="" className="mt-10" />
             </div>
           </div>
         </div>
