@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const HeaderMain = ({ data, handleNext, handlePrev, generateRandomDate }) => {
   return (
@@ -13,7 +14,7 @@ const HeaderMain = ({ data, handleNext, handlePrev, generateRandomDate }) => {
 
       {/* Recipe Content */}
       {data && (
-        <div className="w-[73%] h-[95%] flex md:w-[85%] ">
+        <Link to = {`/recipe/detail/${data.id}`} className="w-[73%] h-[95%] flex md:w-[85%] ">
           {/* Instructions Section */}
           <div className="hidden md:flex flex-col justify-between bg-[#E7FAFE] h-full w-[50%] rounded-l-3xl p-8">
             {/* Tag */}
@@ -76,7 +77,7 @@ const HeaderMain = ({ data, handleNext, handlePrev, generateRandomDate }) => {
               alt="Recipe Dish"
             />
           </div>
-        </div>
+        </Link>
       )}
 
       {/* Right Navigation Button */}

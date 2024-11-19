@@ -11,14 +11,15 @@ const App = () => {
   return (
     <>
       <div>
-        {/* <Routes>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/recipe" element={<Recipes />} />
+          <Route path="/recipe/detail/:id" element={ <RecipeDetails/>} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/aboutus" element={<AboutUs />} />
-        </Routes> */}
-        <RecipeDetails/>
+        </Routes>
+       {/* <RecipeDetails/> */}
       </div>
     </>
   );

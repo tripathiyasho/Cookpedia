@@ -16,7 +16,7 @@ const RecipeHome = ({ data }) => {
       {/* cards  */}
       <div className="flex flex-wrap justify-center  gap-6 p-4">
         {data.map((d, i) => (
-          <Link
+          <Link to = {`/recipe/detail/${d.id}`}
             key={i}
             className="w-[90%] sm:w-[48%] lg:w-[25%] bg-gradient-to-b from-transparent to-[#E7F9FD] rounded-2xl shadow-lg overflow-hidden flex flex-col"
           >

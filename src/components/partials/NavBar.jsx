@@ -23,19 +23,19 @@ const NavBar = () => {
           {/* middle part */}
           <div className="hidden md:flex w-[60%] justify-center  ">
             <ul>
-              <Link to="/" className="mx-4">
+              <Link to="/" className="mx-4 hover:text-2xl transition-all ">
                 Home
               </Link>
-              <Link to="/recipe" className="mx-4">
+              <Link to="/recipe" className="mx-4 hover:text-2xl transition-all">
                 Recipe
               </Link>
-              <Link to="/blog" className="mx-4">
+              <Link to="/blog" className="mx-4 hover:text-2xl transition-all">
                 Blog
               </Link>
-              <Link to="/contact" className="mx-4">
+              <Link to="/contact" className="mx-4 hover:text-2xl transition-all">
                 Contact
               </Link>
-              <Link to="/aboutus" className="mx-4">
+              <Link to="/aboutus" className="mx-4 hover:text-2xl transition-all">
                 About us
               </Link>
             </ul>
@@ -43,19 +43,19 @@ const NavBar = () => {
           {/* side part */}
           <div className="hidden md:flex w-[20%] justify-center gap-3">
             <a
-              className="mx-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="mx-2 text-gray-600 hover:text-black transition-colors"
               href=""
             >
               <i className="ri-facebook-fill"></i>
             </a>
             <a
-              className="mx-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="mx-2 text-gray-600 hover:text-black transition-colors"
               href=""
             >
               <i className="ri-twitter-x-fill"></i>
             </a>
             <a
-              className="mx-2 text-gray-600 hover:text-gray-900 transition-colors"
+              className="mx-2 text-gray-600 hover:text-black transition-colors"
               href=""
             >
               <i className="ri-instagram-fill"></i>
@@ -78,16 +78,16 @@ const NavBar = () => {
               <Link to="/" className="mx-4">
                 Home
               </Link>
-              <Link to="/recipe" className="mx-4">
+              <Link to="/recipe" className="mx-4 ">
                 Recipe
               </Link>
-              <Link to="/blog" className="mx-4">
+              <Link to="/blog" className="mx-4 ">
                 Blog
               </Link>
-              <Link to="/contact" className="mx-4">
+              <Link to="/contact" className="mx-4 ">
                 Contact
               </Link>
-              <Link to="/aboutus" className="mx-4">
+              <Link to="/aboutus" className="mx-4 ">
                 About us
               </Link>
             </ul>

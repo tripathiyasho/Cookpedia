@@ -4,7 +4,7 @@ import axios from "axios";
 const tastyAPI = axios.create({
   baseURL: "https://tasty.p.rapidapi.com/", // Set the base URL
   headers: {
-    "x-rapidapi-key": "d4e7e95387mshf5c79e8ecea8615p1f9cabjsne65b4d8e1e80", // Your API key
+    "x-rapidapi-key": "a4b6a8e550mshab53c5f25246f27p129ef4jsn22e6d7c9d5ab", // Your API key
     "x-rapidapi-host": "tasty.p.rapidapi.com", // The host for the API
   },
 });

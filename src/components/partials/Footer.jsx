@@ -15,27 +15,27 @@ const Footer = () => {
         {/* Navigation Links */}
         <div className="mt-5 lg:mt-0 lg:w-[60%]">
           <ul className="flex flex-wrap justify-center lg:justify-end gap-4 lg:gap-6 text-sm lg:text-base text-gray-700">
-            <Link to="/" className="hover:text-gray-900 transition-colors">
+            <Link to="/" className="hover:text-red-500">
               Home
             </Link>
             <Link
               to="/recipe"
-              className="hover:text-gray-900 transition-colors"
+              className="hover:text-red-500"
             >
               Recipe
             </Link>
-            <Link to="/blog" className="hover:text-gray-900 transition-colors">
+            <Link to="/blog" className="hover:text-red-500">
               Blog
             </Link>
             <Link
               to="/contact"
-              className="hover:text-gray-900 transition-colors"
+              className="hover:text-red-500"
             >
               Contact
             </Link>
             <Link
               to="/aboutus"
-              className="hover:text-gray-900 transition-colors"
+              className="hover:text-red-500"
             >
               About Us
             </Link>

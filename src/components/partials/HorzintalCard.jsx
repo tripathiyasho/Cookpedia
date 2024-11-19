@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const HorzintalCard = ({ data, title }) => {
   return (
     <div className=" w-full h-max  flex justify-center items-center flex-col   mt-14 lg:mt-20  ">
@@ -15,7 +15,8 @@ const HorzintalCard = ({ data, title }) => {
 
       <div className="flex flex-wrap justify-center  gap-6 p-4">
         {data.map((d, i) => (
-          <div
+          <Link 
+          to = {`/recipe/detail/${d.id}`}
             key={i}
             className="w-[90%] sm:w-[48%]  lg:w-[20%] rounded-2xl shadow-md  overflow-hidden flex flex-col"
           >
@@ -40,7 +41,7 @@ const HorzintalCard = ({ data, title }) => {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
