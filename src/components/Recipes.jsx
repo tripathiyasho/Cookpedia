@@ -86,7 +86,7 @@ const Recipes = () => {
 
           <div className="flex flex-wrap lg:flex-nowrap w-[90%] gap-6">
             {/* card  */}
-            <div className="w-full lg:w-[75%] flex flex-col items-center mb-10">
+            <div className="w-full lg:w-[70%] flex flex-col items-center mb-10">
               {paginatedData.map((d, i) => (
                 <div
                   key={i}
@@ -121,7 +121,7 @@ const Recipes = () => {
               ))}
             </div>
             {/* suggestion  */}
-            <div className="hidden lg:flex lg:w-[25%] flex-col">
+            <div className="hidden lg:flex lg:w-[30%] flex-col">
               <span className="text-xl font-bold">Tasty Recipes</span>
               <div className="flex flex-col mt-4">
                 {sideData.map((da, i) => (
@@ -140,6 +140,7 @@ const Recipes = () => {
                   </div>
                 ))}
               </div>
+              <img src="../ad.png" alt=""  className="mt-10"/>
             </div>
           </div>
         </div>
